@@ -1,1 +1,24 @@
+#include <iostream>
+#include <vector>
+#include <random>
 
+
+
+int numbers(){
+    std:: default_random_engine generator;
+    std::uniform_int_distribution<int> distribution(std::random_device{}());  // included seeding for randomness -- how does it stop at 6
+
+    int num1 = distribution(generator);
+    int num2 = distribution(generator);
+    return num1 + num2;
+}
+
+
+int main(){
+    int results = numbers();
+    if (results == 7 || results == 11){
+        std:: cout<<"You have won!"<<std::endl;
+    } else{
+        std::cout<<"Sorry, better luck next time"<<std::endl;
+    }
+}
