@@ -1,1 +1,25 @@
+#include <iostream>
+#include <random>
+#include <string>
+#include <vector>
 
+
+std::vector<std::string> symbols = {"A", "B", "C"};
+
+std::default_random_engine generator;
+std::uniform_int_distribution<int> distribution(0, symbols.size() - 1);  // Range [0, 2]
+
+
+int main(){
+    std::string spin1 = symbols[distribution(generator)];
+    std::string spin2 = symbols[distribution(generator)];
+    std::string spin3 = symbols[distribution(generator)];
+
+    std::cout << spin1 << spin2 << spin3 << std::endl;
+
+    if (spin1 == spin2 && spin1==spin3){
+        std::cout<<"You have won!"<<std::endl;
+    } else {
+        std::cout<<"Better luck next time"<<std::endl;
+    }
+}
