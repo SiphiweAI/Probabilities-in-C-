@@ -1,1 +1,15 @@
+#include <iostream>
+#include <random>
 
+std::default_random_engine generator;
+std::uniform_int_distribution<int> distribution(0,1);
+
+int main(){
+    int flip = distribution(generator);
+    if (flip == 0) {
+        std::cout<<"Heads!"<<std::endl;
+    } else if (flip == 1){
+        std::cout<<"Tails!"<<std::endl;
+    }
+    return 0;
+}
