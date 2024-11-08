@@ -6,7 +6,8 @@
 
 std::vector<std::string> symbols = {"A", "B", "C"};
 
-std::default_random_engine generator;
+std::random_device rd;
+std::mt19937 generator(rd());
 std::uniform_int_distribution<int> distribution(0, symbols.size() - 1);  // Range [0, 2]
 
 
@@ -22,4 +23,5 @@ int main(){
     } else {
         std::cout<<"Better luck next time"<<std::endl;
     }
+    return 0;
 }
