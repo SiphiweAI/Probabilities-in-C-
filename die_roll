@@ -5,8 +5,9 @@
 
 
 int numbers(){
-    std:: default_random_engine generator;
-    std::uniform_int_distribution<int> distribution(std::random_device{}());  // included seeding for randomness -- how does it stop at 6
+    std::random_device rd;
+    std:: mt19937 generator(rd());
+    std::uniform_int_distribution<int> distribution(1,6);  // included seeding for randomness
 
     int num1 = distribution(generator);
     int num2 = distribution(generator);
