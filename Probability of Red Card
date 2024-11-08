@@ -1,0 +1,52 @@
+#include <iostream>
+#include <vector>
+#include <random>
+#include <algorithm>
+
+// Function to simulate the deck and calculate probability
+double calculateRedCardProbability(int numDraws) {
+    // Create a deck of 52 cards with 26 red cards (hearts and diamonds)
+    // 0-12: Hearts (red), 13-25: Diamonds (red), 26-38: Clubs, 39-51: Spades
+    std::vector<std::string> deck;
+    
+    // Add hearts and diamonds (red suits)
+    for (int i = 0; i < 26; ++i) {
+        if (i < 13) {
+            deck.push_back("Red Card"); // Hearts
+        } else {
+            deck.push_back("Red Card"); // Diamonds
+        }
+    }
+
+    // Add clubs and spades (black suits)
+    for (int i = 26; i < 52; ++i) {
+        deck.push_back("Black Card"); // Clubs and Spades
+    }
+
+    // Random number generator and shuffle the deck
+    std::random_device rd;
+    std::mt19937 g(rd());
+    std::shuffle(deck.begin(), deck.end(), g);
+
+    // Draw cards and count how many red cards are drawn
+    int redCardCount = 0;
+    for (int i = 0; i < numDraws; ++i) {
+        int draw = rand() % 52; // Random draw from the shuffled deck
+        if (deck[draw] == "Red Card") {
+            redCardCount++;
+        }
+    }
+
+    // Calculate the estimated probability of drawing a red card
+    return static_cast<double>(redCardCount) / numDraws;
+}
+
+int main() {
+    int numDraws = 10000; // Number of card draws for simulation
+    double probability = calculateRedCardProbability(numDraws);
+
+    std::cout << "Estimated probability of drawing a red card: " << probability << std::endl;
+    std::cout << "Theoretical probability: 0.5" << std::endl;
+
+    return 0;
+}
